@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="cupcake">
       <body
         className={`${josefinSans.variable} font-josefinSans flex flex-col min-h-screen`}
       >
