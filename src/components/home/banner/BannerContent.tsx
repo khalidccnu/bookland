@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import imgHighlow from "@/assets/partners/highlow.png";
-import imgAmajine from "@/assets/partners/amajine.png";
-import imgGlowup from "@/assets/partners/glowup.png";
+import imgHighlow from "@/assets/partners/highlow.svg";
+import imgAmajine from "@/assets/partners/amajine.svg";
+import imgGlowup from "@/assets/partners/glowup.svg";
 
 const BannerContent = () => {
   return (
