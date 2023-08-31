@@ -11,7 +11,7 @@ const josefinSans = Josefin_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "BookLand",
+  title: "Buy books at lowest price | BookLand",
   description:
     "BookLand is the largest online bookstore in Bangladesh. Buy books at lowest price.",
   icons: {

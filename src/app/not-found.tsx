@@ -24,8 +24,8 @@ const NotFound = () => {
               Sorry, the page you are looking for does not exist.
             </p>
             <div className="flex !mt-5 gap-x-3">
-              <GoBack className="btn btn-sm bg-blue-cetacean text-yellow-indian !border-blue-cetacean hover:bg-transparent rounded-lg normal-case" />
-              <TakeMeHome className="btn btn-sm bg-transparent text-yellow-indian !border-blue-cetacean hover:bg-blue-cetacean rounded-lg normal-case" />
+              <GoBack className="btn-blue-cetacean" />
+              <TakeMeHome className="btn-blue-cetacean-outline" />
             </div>
           </div>
           <figure className={`order-first sm:order-none`}>
@@ -34,6 +34,7 @@ const NotFound = () => {
               alt=""
               width="0"
               height="0"
+              sizes="100vw"
               className={`w-full h-auto`}
             />
           </figure>
