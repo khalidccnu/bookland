@@ -12,7 +12,7 @@ const Partners = () => {
         <ul
           className={`grid grid-cols-3 sm:grid-cols-5 gap-8 max-w-3xl mx-auto`}
         >
-          <li>
+          <li data-aos="fade" data-aos-offset="0">
             <Image
               src={imgHighlow.src}
               alt=""
@@ -22,7 +22,7 @@ const Partners = () => {
               className={`w-full h-8`}
             />
           </li>
-          <li>
+          <li data-aos="fade" data-aos-offset="0">
             <Image
               src={imgBoosst.src}
               alt=""
@@ -32,7 +32,7 @@ const Partners = () => {
               className={`w-full h-8`}
             />
           </li>
-          <li>
+          <li data-aos="fade" data-aos-offset="0">
             <Image
               src={imgAmajine.src}
               alt=""
@@ -42,7 +42,7 @@ const Partners = () => {
               className={`w-full h-8`}
             />
           </li>
-          <li>
+          <li data-aos="fade" data-aos-offset="0">
             <Image
               src={imgManthul.src}
               alt=""
@@ -52,7 +52,7 @@ const Partners = () => {
               className={`w-full h-8`}
             />
           </li>
-          <li>
+          <li data-aos="fade" data-aos-offset="0">
             <Image
               src={imgGlowup.src}
               alt=""

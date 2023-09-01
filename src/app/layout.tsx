@@ -5,6 +5,7 @@ import brandIcon from "./fi-bookland.svg";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import "aos/dist/aos.css";
 import "./globals.css";
 
 const josefinSans = Josefin_Sans({

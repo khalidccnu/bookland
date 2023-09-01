@@ -16,9 +16,9 @@ const Testimonials = () => {
   const { isLoading, testimonials } = useTestimonials();
 
   return (
-    <section className={`py-16`}>
+    <section className={`py-16 overflow-x-hidden`}>
       <div className="container">
-        <div className={`mb-10`}>
+        <div className={`mb-10`} data-aos="fade-right">
           <h2 className={`font-bold text-2xl`}>Testimonials</h2>
           <p className={`max-w-sm text-gray-500`}>
             We shared our past customers review that describes how our books or
@@ -31,6 +31,8 @@ const Testimonials = () => {
               <div
                 key={testimonial._id}
                 className="flex flex-col bg-white text-center rounded overflow-hidden"
+                data-aos="fade-left"
+                data-aos-offset="-60"
               >
                 <div className="relative px-8 py-12 text-gray-500">
                   <span

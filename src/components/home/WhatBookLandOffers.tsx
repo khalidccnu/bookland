@@ -7,7 +7,11 @@ const WhatBookLandOffers = () => {
     <section className={`py-16`}>
       <div className="container">
         <div className={`grid grid-cols-2 md:grid-cols-4 gap-8`}>
-          <div className={`text-center`}>
+          <div
+            className={`text-center`}
+            data-aos="fade-up"
+            data-aos-offset="-30"
+          >
             <div
               className={`flex justify-center items-center bg-yellow-indian/20 text-yellow-indian text-3xl w-16 h-16 mx-auto rounded`}
             >
@@ -17,7 +21,11 @@ const WhatBookLandOffers = () => {
               Quick Delivery
             </h2>
           </div>
-          <div className={`text-center`}>
+          <div
+            className={`text-center`}
+            data-aos="fade-up"
+            data-aos-offset="-30"
+          >
             <div
               className={`flex justify-center items-center bg-yellow-indian/20 text-yellow-indian text-3xl w-16 h-16 mx-auto rounded`}
             >
@@ -27,7 +35,11 @@ const WhatBookLandOffers = () => {
               Secure Payment
             </h2>
           </div>
-          <div className={`text-center`}>
+          <div
+            className={`text-center`}
+            data-aos="fade-up"
+            data-aos-offset="-30"
+          >
             <div
               className={`flex justify-center items-center bg-yellow-indian/20 text-yellow-indian text-3xl w-16 h-16 mx-auto rounded`}
             >
@@ -37,7 +49,11 @@ const WhatBookLandOffers = () => {
               Best Quality
             </h2>
           </div>
-          <div className={`text-center`}>
+          <div
+            className={`text-center`}
+            data-aos="fade-up"
+            data-aos-offset="-30"
+          >
             <div
               className={`flex justify-center items-center bg-yellow-indian/20 text-yellow-indian text-3xl w-16 h-16 mx-auto rounded`}
             >
