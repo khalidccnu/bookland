@@ -17,3 +17,12 @@
 .btn-yellow-indian-outline {
   @apply btn btn-sm bg-transparent text-white border-yellow-indian hover:bg-yellow-indian hover:border-yellow-indian rounded-lg normal-case;
 }
+
+/* === Books on Sale === */
+.swiper-bos-pagination .swiper-pagination-bullet {
+  @apply w-1.5 h-1.5;
+}
+
+.swiper-bos-pagination .swiper-pagination-bullet-active {
+  @apply bg-yellow-indian;
+}

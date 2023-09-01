@@ -2,6 +2,9 @@ import React from "react";
 import type { Metadata } from "next";
 import { Josefin_Sans } from "next/font/google";
 import brandIcon from "./fi-bookland.svg";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import "./globals.css";
 
 const josefinSans = Josefin_Sans({
