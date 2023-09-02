@@ -1,4 +1,4 @@
-import Banner from "@/components/home/banner/Banner";
+import Banner from "@/components/home/banner";
 import Partners from "@/components/home/Partners";
 import WhatBookLandOffers from "@/components/home/WhatBookLandOffers";
 import BooksOnSale from "@/components/home/BooksOnSale";

@@ -45,6 +45,7 @@ const BooksOnSale = () => {
             enabled: true,
             prevEl: ".swiper-bos-button-prev",
             nextEl: ".swiper-bos-button-next",
+            disabledClass: "swiper-bos-button-disabled",
           }}
           pagination={{ el: ".swiper-bos-pagination", clickable: true }}
           slidesPerView={1}

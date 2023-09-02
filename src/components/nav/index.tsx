@@ -35,14 +35,16 @@ const Nav = () => {
         <div className="container">
           <div className={`flex items-center`}>
             <figure className={`mr-auto`}>
-              <Image
-                src={lgBookLand.src}
-                alt=""
-                width="0"
-                height="0"
-                sizes="100vw"
-                className={`w-32 h-auto`}
-              />
+              <Link href="/">
+                <Image
+                  src={lgBookLand.src}
+                  alt=""
+                  width="0"
+                  height="0"
+                  sizes="100vw"
+                  className={`w-32 h-auto`}
+                />
+              </Link>
             </figure>
             <div className={`hidden md:block mr-3`}>
               <Search />

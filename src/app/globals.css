@@ -19,6 +19,10 @@
 }
 
 /* === Books on Sale === */
+.swiper-bos-button-disabled {
+  @apply bg-yellow-indian/50 pointer-events-none;
+}
+
 .swiper-bos-pagination .swiper-pagination-bullet {
   @apply w-1.5 h-1.5;
 }

@@ -6,7 +6,7 @@ import BannerAnimation from "@/components/home/banner/BannerAnimation";
 const Banner = () => {
   return (
     <section
-      className={`relative bg-blue-cetacean text-white w-screen py-16 overflow-x-hidden`}
+      className={`relative bg-blue-cetacean text-white py-16 overflow-x-hidden`}
     >
       <figure className={`absolute top-0 left-0 w-full h-full opacity-[0.02]`}>
         <Image

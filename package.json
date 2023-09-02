@@ -27,6 +27,7 @@
     "react-countup": "^6.4.2",
     "react-dom": "18.2.0",
     "react-icons": "^4.10.1",
+    "react-visibility-sensor": "^5.1.1",
     "regenerator-runtime": "^0.14.0",
     "swiper": "^10.2.0",
     "swr": "^2.2.2",
