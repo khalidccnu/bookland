@@ -36,11 +36,11 @@ const PopularBooks = () => {
           className={`w-full h-full`}
         />
       </figure>
-      <div className="container">
+      <div className="relative container">
         <h2 className={`font-bold text-2xl text-center mb-10`}>
           Popular For You
         </h2>
-        <div className={`relative max-w-3xl mx-auto`}>
+        <div className={`max-w-3xl mx-auto`}>
           {!isLoading ? (
             <>
               <Swiper

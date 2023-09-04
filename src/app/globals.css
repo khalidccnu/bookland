@@ -3,19 +3,19 @@
 @tailwind utilities;
 
 .btn-blue-cetacean {
-  @apply btn btn-sm bg-blue-cetacean text-yellow-indian border-blue-cetacean hover:bg-transparent hover:border-blue-cetacean rounded-lg normal-case;
+  @apply btn btn-sm bg-blue-cetacean text-yellow-indian border-blue-cetacean hover:bg-transparent hover:border-blue-cetacean rounded normal-case;
 }
 
 .btn-yellow-indian {
-  @apply btn btn-sm bg-yellow-indian text-white border-yellow-indian hover:bg-transparent hover:border-yellow-indian rounded-lg normal-case;
+  @apply btn btn-sm bg-yellow-indian text-white border-yellow-indian hover:bg-transparent hover:border-yellow-indian rounded normal-case;
 }
 
 .btn-blue-cetacean-outline {
-  @apply btn btn-sm bg-transparent text-yellow-indian border-blue-cetacean hover:bg-blue-cetacean hover:border-blue-cetacean rounded-lg normal-case;
+  @apply btn btn-sm bg-transparent text-yellow-indian border-blue-cetacean hover:bg-blue-cetacean hover:border-blue-cetacean rounded normal-case;
 }
 
 .btn-yellow-indian-outline {
-  @apply btn btn-sm bg-transparent text-white border-yellow-indian hover:bg-yellow-indian hover:border-yellow-indian rounded-lg normal-case;
+  @apply btn btn-sm bg-transparent text-white border-yellow-indian hover:bg-yellow-indian hover:border-yellow-indian rounded normal-case;
 }
 
 /* === Swiper Slider === */
