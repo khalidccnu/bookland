@@ -13,9 +13,9 @@ const FunFacts = () => {
             >
               <FaUsers />
             </div>
-            <h2 className={`font-bold text-2xl text-blue-cetacean mt-5`}>
+            <h3 className={`font-bold text-lg text-blue-cetacean mt-5`}>
               <NumberCountUp start={111} end={130} />
-            </h2>
+            </h3>
             <h3 className={`font-medium text-gray-500`}>Happy Customers</h3>
           </div>
           <div className={`text-center`}>
@@ -24,9 +24,9 @@ const FunFacts = () => {
             >
               <FaBook />
             </div>
-            <h2 className={`font-bold text-2xl text-blue-cetacean mt-5`}>
+            <h3 className={`font-bold text-lg text-blue-cetacean mt-5`}>
               <NumberCountUp start={78} end={100} />
-            </h2>
+            </h3>
             <h3 className={`font-medium text-gray-500`}>Book Collections</h3>
           </div>
           <div className={`text-center`}>
@@ -35,9 +35,9 @@ const FunFacts = () => {
             >
               <FaShop />
             </div>
-            <h2 className={`font-bold text-2xl text-blue-cetacean mt-5`}>
+            <h3 className={`font-bold text-lg text-blue-cetacean mt-5`}>
               <NumberCountUp start={133} end={160} />
-            </h2>
+            </h3>
             <h3 className={`font-medium text-gray-500`}>Our Stores</h3>
           </div>
           <div className={`text-center`}>
@@ -46,9 +46,9 @@ const FunFacts = () => {
             >
               <FaPenAlt />
             </div>
-            <h2 className={`font-bold text-2xl text-blue-cetacean mt-5`}>
+            <h3 className={`font-bold text-lg text-blue-cetacean mt-5`}>
               <NumberCountUp start={37} end={50} />
-            </h2>
+            </h3>
             <h3 className={`font-medium text-gray-500`}>Famous Writers</h3>
           </div>
         </div>

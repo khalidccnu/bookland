@@ -6,7 +6,7 @@ import BooksOnSale from "@/components/home/books-on-sale";
 import PopularBooks from "@/components/home/popular-books";
 import Testimonials from "@/components/home/Testimonials";
 import FunFacts from "@/components/home/FunFacts";
-import Newsletter from "@/components/Newsletter";
+import Newsletter from "@/components/home/Newsletter";
 
 const Home = () => {
   return (

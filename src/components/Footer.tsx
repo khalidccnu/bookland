@@ -81,7 +81,7 @@ const Footer = () => {
               </li>
               <li className={`flex items-center space-x-3`}>
                 <FaPhone className={`text-yellow-indian rotate-90`} />
-                <Link href="tel:+8801708166238">+8801708166238</Link>
+                <Link href="tel:+8801708166238">(+880) 1708166238</Link>
               </li>
               <li className={`flex items-center space-x-3`}>
                 <FaEnvelope className={`text-yellow-indian`} />

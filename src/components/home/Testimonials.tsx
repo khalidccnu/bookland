@@ -38,13 +38,15 @@ const Testimonials = () => {
                   data-aos="fade-left"
                   data-aos-offset="-60"
                 >
-                  <div className="relative px-8 py-12 text-gray-500">
+                  <div className="relative px-8 py-12">
                     <span
-                      className={`absolute top-1 left-1 text-5xl text-gray-200`}
+                      className={`absolute top-1 left-1 text-5xl text-gray-300`}
                     >
                       <BsQuote />
                     </span>
-                    <p className={`relative`}>{testimonial.comment}</p>
+                    <p className={`relative text-gray-500`}>
+                      {testimonial.comment}
+                    </p>
                   </div>
                   <div className="relative px-8 pt-12 pb-6 mt-auto bg-blue-cetacean text-white">
                     <figure className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 w-16 h-16 border-4 border-yellow-indian rounded-full overflow-hidden">
@@ -53,8 +55,8 @@ const Testimonials = () => {
                         className={`w-full h-full`}
                       />
                     </figure>
-                    <h3 className="font-semibold">{testimonial.name}</h3>
-                    <h5 className={`text-yellow-indian`}>
+                    <h3 className="font-bold text-lg">{testimonial.name}</h3>
+                    <h5 className={`font-medium text-yellow-indian`}>
                       {testimonial.profession}
                     </h5>
                   </div>

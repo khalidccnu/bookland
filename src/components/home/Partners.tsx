@@ -12,7 +12,11 @@ const Partners = () => {
         <ul
           className={`grid grid-cols-3 sm:grid-cols-5 gap-8 max-w-3xl mx-auto`}
         >
-          <li data-aos="fade" data-aos-offset="0">
+          <li
+            data-aos="fade"
+            data-aos-offset="0"
+            data-aos-anchor-placement="bottom-bottom"
+          >
             <Image
               src={imgHighlow.src}
               alt=""
@@ -22,7 +26,11 @@ const Partners = () => {
               className={`w-full h-8`}
             />
           </li>
-          <li data-aos="fade" data-aos-offset="0">
+          <li
+            data-aos="fade"
+            data-aos-offset="0"
+            data-aos-anchor-placement="bottom-bottom"
+          >
             <Image
               src={imgBoosst.src}
               alt=""
@@ -32,7 +40,11 @@ const Partners = () => {
               className={`w-full h-8`}
             />
           </li>
-          <li data-aos="fade" data-aos-offset="0">
+          <li
+            data-aos="fade"
+            data-aos-offset="0"
+            data-aos-anchor-placement="bottom-bottom"
+          >
             <Image
               src={imgAmajine.src}
               alt=""
@@ -42,7 +54,11 @@ const Partners = () => {
               className={`w-full h-8`}
             />
           </li>
-          <li data-aos="fade" data-aos-offset="0">
+          <li
+            data-aos="fade"
+            data-aos-offset="0"
+            data-aos-anchor-placement="bottom-bottom"
+          >
             <Image
               src={imgManthul.src}
               alt=""
@@ -52,7 +68,11 @@ const Partners = () => {
               className={`w-full h-8`}
             />
           </li>
-          <li data-aos="fade" data-aos-offset="0">
+          <li
+            data-aos="fade"
+            data-aos-offset="0"
+            data-aos-anchor-placement="bottom-bottom"
+          >
             <Image
               src={imgGlowup.src}
               alt=""

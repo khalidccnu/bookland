@@ -17,9 +17,9 @@ const WhatBookLandOffers = () => {
             >
               <MdFlashOn />
             </div>
-            <h2 className={`font-bold text-xl text-blue-cetacean mt-5`}>
+            <h3 className={`font-bold text-lg text-blue-cetacean mt-5`}>
               Quick Delivery
-            </h2>
+            </h3>
           </div>
           <div
             className={`text-center`}
@@ -31,9 +31,9 @@ const WhatBookLandOffers = () => {
             >
               <AiFillSafetyCertificate />
             </div>
-            <h2 className={`font-bold text-xl text-blue-cetacean mt-5`}>
+            <h3 className={`font-bold text-lg text-blue-cetacean mt-5`}>
               Secure Payment
-            </h2>
+            </h3>
           </div>
           <div
             className={`text-center`}
@@ -45,9 +45,9 @@ const WhatBookLandOffers = () => {
             >
               <BsHandThumbsUp />
             </div>
-            <h2 className={`font-bold text-xl text-blue-cetacean mt-5`}>
+            <h3 className={`font-bold text-lg text-blue-cetacean mt-5`}>
               Best Quality
-            </h2>
+            </h3>
           </div>
           <div
             className={`text-center`}
@@ -59,9 +59,9 @@ const WhatBookLandOffers = () => {
             >
               <MdStar />
             </div>
-            <h2 className={`font-bold text-xl text-blue-cetacean mt-5`}>
+            <h3 className={`font-bold text-lg text-blue-cetacean mt-5`}>
               Return Guarantee
-            </h2>
+            </h3>
           </div>
         </div>
       </div>

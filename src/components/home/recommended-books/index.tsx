@@ -55,7 +55,6 @@ const RecommendedBooks = () => {
                   pauseOnMouseEnter: true,
                   disableOnInteraction: false,
                 }}
-                grabCursor={true}
                 centeredSlides={true}
                 loop={true}
                 slidesPerView={1}
