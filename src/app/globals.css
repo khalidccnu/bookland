@@ -18,6 +18,11 @@
   @apply btn btn-sm bg-transparent text-white border-yellow-indian hover:bg-yellow-indian hover:border-yellow-indian rounded-lg normal-case;
 }
 
+/* === Recommended Books === */
+#rb .swiper-slide-shadow-left, #rb .swiper-slide-shadow-right {
+  display: none;
+}
+
 /* === Books on Sale === */
 .swiper-bos-button-disabled {
   @apply bg-yellow-indian/50 pointer-events-none;

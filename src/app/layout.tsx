@@ -3,8 +3,10 @@ import type { Metadata } from "next";
 import { Josefin_Sans } from "next/font/google";
 import brandIcon from "./fi-bookland.svg";
 import "swiper/css";
+import "swiper/css/effect-coverflow";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import "swiper/css/autoplay";
 import "aos/dist/aos.css";
 import "./globals.css";
 

@@ -14,11 +14,11 @@ interface Book {
   rating: number;
 }
 
-interface DiscountBookProps {
+interface BookCardProps {
   book: Book;
 }
 
-const DiscountBook: React.FC<DiscountBookProps> = ({ book }) => {
+const BookCard: React.FC<BookCardProps> = ({ book }) => {
   const {
     _id,
     title,
@@ -68,4 +68,4 @@ const DiscountBook: React.FC<DiscountBookProps> = ({ book }) => {
   );
 };
 
-export default DiscountBook;
+export default BookCard;
