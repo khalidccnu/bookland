@@ -58,7 +58,7 @@ const PopularBooks = () => {
                 {popularBooks?.map((popularBook: Book) => (
                   <SwiperSlide
                     key={popularBook._id}
-                    className={`group w-4/5 h-auto`}
+                    className={`group !w-4/5 h-auto`}
                   >
                     <BookCard book={popularBook} />
                   </SwiperSlide>
