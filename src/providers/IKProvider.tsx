@@ -1,4 +1,3 @@
-"use client";
 import "regenerator-runtime/runtime";
 
 import React from "react";
