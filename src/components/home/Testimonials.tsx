@@ -3,7 +3,7 @@
 import { IKImage } from "imagekitio-react";
 import { Rings } from "react-loader-spinner";
 import { BsQuote } from "react-icons/bs";
-import useTestimonials from "@/hooks/useTestimonials";
+import { useGetTestimonialsQuery } from "@/redux/testimonials/testimonialsAPI";
 
 interface testimonial {
   _id: string;
@@ -14,7 +14,7 @@ interface testimonial {
 }
 
 const Testimonials = () => {
-  const { isLoading, testimonials } = useTestimonials();
+  const { isLoading, data: testimonials } = useGetTestimonialsQuery();
 
   return (
     <section className={`py-16 overflow-x-hidden`}>
@@ -30,7 +30,7 @@ const Testimonials = () => {
           <div
             className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8`}
           >
-            {testimonials.map((testimonial: testimonial) => {
+            {testimonials?.map((testimonial: testimonial) => {
               return (
                 <div
                   key={testimonial._id}

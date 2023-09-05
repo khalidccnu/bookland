@@ -8,7 +8,7 @@ import {
   MdOutlineKeyboardArrowLeft,
   MdOutlineKeyboardArrowRight,
 } from "react-icons/md";
-import useFeaturedBooks from "@/hooks/useFeaturedBooks";
+import { useGetFeaturedBooksQuery } from "@/redux/books/booksAPI";
 import BookCard from "@/components/home/recommended-books/BookCard";
 
 interface Book {
@@ -21,7 +21,7 @@ interface Book {
 }
 
 const RecommendedBooks = () => {
-  const { isLoading, featuredBooks } = useFeaturedBooks();
+  const { isLoading, data: featuredBooks } = useGetFeaturedBooksQuery();
 
   return (
     <section id="rb" className={`relative bg-gray-100 py-16`}>
@@ -73,7 +73,7 @@ const RecommendedBooks = () => {
                   },
                 }}
               >
-                {featuredBooks.map((featuredBook: Book) => (
+                {featuredBooks?.map((featuredBook: Book) => (
                   <SwiperSlide key={featuredBook._id} className={`group`}>
                     <BookCard book={featuredBook} />
                   </SwiperSlide>

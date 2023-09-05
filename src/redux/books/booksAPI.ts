@@ -34,7 +34,22 @@ const booksAPI = baseAPI.injectEndpoints({
     getBooks: build.query<gbResultType[], gbQueryArg>({
       query: ({ page, limit }) => `/books?page=${page}&limit=${limit}`,
     }),
+    getFeaturedBooks: build.query<gbResultType[], void>({
+      query: () => `/books/featured`,
+    }),
+    getDiscountBooks: build.query<gbResultType[], void>({
+      query: () => `/books/discount`,
+    }),
+    getPopularBooks: build.query<gbResultType[], void>({
+      query: () => `/books/popular`,
+    }),
   }),
 });
 
-export const { useGetBooksCountQuery, useGetBooksQuery } = booksAPI;
+export const {
+  useGetBooksCountQuery,
+  useGetBooksQuery,
+  useGetFeaturedBooksQuery,
+  useGetDiscountBooksQuery,
+  useGetPopularBooksQuery,
+} = booksAPI;

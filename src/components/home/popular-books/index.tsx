@@ -8,7 +8,7 @@ import {
   MdOutlineKeyboardArrowLeft,
   MdOutlineKeyboardArrowRight,
 } from "react-icons/md";
-import usePopularBooks from "@/hooks/usePopularBooks";
+import { useGetPopularBooksQuery } from "@/redux/books/booksAPI";
 import BookCard from "@/components/home/popular-books/BookCard";
 
 interface Book {
@@ -21,7 +21,7 @@ interface Book {
 }
 
 const PopularBooks = () => {
-  const { isLoading, popularBooks } = usePopularBooks();
+  const { isLoading, data: popularBooks } = useGetPopularBooksQuery();
 
   return (
     <section className={`relative bg-gray-100 py-16`}>
@@ -55,7 +55,7 @@ const PopularBooks = () => {
                 slidesPerView="auto"
                 spaceBetween={50}
               >
-                {popularBooks.map((popularBook: Book) => (
+                {popularBooks?.map((popularBook: Book) => (
                   <SwiperSlide
                     key={popularBook._id}
                     className={`group w-4/5 h-auto`}

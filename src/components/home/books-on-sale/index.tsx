@@ -7,7 +7,7 @@ import {
   MdOutlineKeyboardArrowLeft,
   MdOutlineKeyboardArrowRight,
 } from "react-icons/md";
-import useDiscountBooks from "@/hooks/useDiscountBooks";
+import { useGetDiscountBooksQuery } from "@/redux/books/booksAPI";
 import BookCard from "@/components/home/books-on-sale/BookCard";
 
 interface Book {
@@ -23,7 +23,7 @@ interface Book {
 }
 
 const BooksOnSale = () => {
-  const { isLoading, discountBooks } = useDiscountBooks();
+  const { isLoading, data: discountBooks } = useGetDiscountBooksQuery();
 
   return (
     <section className={`py-16`}>
@@ -66,7 +66,7 @@ const BooksOnSale = () => {
               },
             }}
           >
-            {discountBooks.map((discountBook: Book) => (
+            {discountBooks?.map((discountBook: Book) => (
               <SwiperSlide key={discountBook._id}>
                 <BookCard book={discountBook} />
               </SwiperSlide>
