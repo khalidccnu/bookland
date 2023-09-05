@@ -1,9 +1,8 @@
-import { NextResponse } from "next/server";
-import { IncomingMessage } from "http";
+import { NextRequest, NextResponse } from "next/server";
 import dbCollection from "@/services/dbCollection";
 
-export const GET = async (req: IncomingMessage) => {
-  const { searchParams } = new URL(req.url || "");
+export const GET = async (req: NextRequest) => {
+  const { searchParams } = new URL(req.url);
   const books = await dbCollection("books");
 
   let skip = 0,
