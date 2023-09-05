@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IKImage } from "imagekitio-react";
+import toast from "react-hot-toast";
+import { BsCartDashFill, BsCartPlusFill } from "react-icons/bs";
 import { FaStar } from "react-icons/fa";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { addCart, removeCart } from "@/redux/cart/cartSlice";
 
 interface Book {
   _id: string;
@@ -30,9 +34,18 @@ const BookCard: React.FC<BookCardProps> = ({ book }) => {
     discountPercentage,
     rating,
   } = book;
+  const [isCart, setCart] = useState(false);
+  const { cart } = useAppSelector((store) => store.cartSlice);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const itemIndex = cart.findIndex((item: { id: string }) => item.id === _id);
+
+    itemIndex !== -1 ? setCart(true) : setCart(false);
+  }, [cart, _id]);
 
   return (
-    <div>
+    <div className={`group`}>
       <figure className={`relative w-full h-80`}>
         {discount ? (
           <div
@@ -52,6 +65,31 @@ const BookCard: React.FC<BookCardProps> = ({ book }) => {
           ]}
           className={`w-full h-full`}
         />
+        <div
+          className={`absolute left-0 top-0 flex justify-center items-center w-full h-0 group-hover:h-full bg-gray-500/50 text-3xl transition-[height] duration-500 overflow-hidden`}
+        >
+          <div
+            className={`flex justify-center items-center bg-white w-12 h-12 p-3 text-blue-cetacean hover:text-yellow-indian rounded-full transition-colors duration-500`}
+          >
+            {isCart ? (
+              <BsCartDashFill
+                className={`cursor-pointer`}
+                onClick={() => {
+                  dispatch(removeCart({ method: "short", id: _id }));
+                  toast.success("Item removed!");
+                }}
+              />
+            ) : (
+              <BsCartPlusFill
+                className={`cursor-pointer`}
+                onClick={() => {
+                  dispatch(addCart({ method: "short", id: _id }));
+                  toast.success("Item added!");
+                }}
+              />
+            )}
+          </div>
+        </div>
       </figure>
       <h3
         className={`font-semibold text-lg mt-3 mb-1 whitespace-nowrap overflow-ellipsis overflow-x-hidden`}

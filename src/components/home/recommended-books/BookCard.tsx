@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IKImage } from "imagekitio-react";
+import toast from "react-hot-toast";
 import { FaCartPlus } from "react-icons/fa";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { addCart } from "@/redux/cart/cartSlice";
 
 interface Book {
   _id: string;
@@ -17,6 +20,15 @@ interface BookCardProps {
 
 const BookCard: React.FC<BookCardProps> = ({ book }) => {
   const { _id, title, price, image } = book;
+  const [isCart, setCart] = useState(false);
+  const { cart } = useAppSelector((store) => store.cartSlice);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const itemIndex = cart.findIndex((item: { id: string }) => item.id === _id);
+
+    itemIndex !== -1 ? setCart(true) : setCart(false);
+  }, [cart, _id]);
 
   return (
     <div>
@@ -43,7 +55,13 @@ const BookCard: React.FC<BookCardProps> = ({ book }) => {
         <span className={`block font-medium text-yellow-indian`}>${price}</span>
         <button
           type="button"
-          className={`btn-yellow-indian hover:text-yellow-indian`}
+          className={`btn-yellow-indian hover:text-yellow-indian ${
+            isCart ? "btn-disabled" : ""
+          }`}
+          onClick={() => {
+            dispatch(addCart({ method: "short", id: _id }));
+            toast.success("Item added!");
+          }}
         >
           <FaCartPlus />
           <span>Add to cart</span>

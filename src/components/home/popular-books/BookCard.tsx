@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import toast from "react-hot-toast";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { addCart } from "@/redux/cart/cartSlice";
 
 interface Book {
   _id: string;
@@ -17,6 +20,15 @@ interface BookCardProps {
 const BookCard: React.FC<BookCardProps> = ({ book }) => {
   const { _id, title, price, discountPrice, discount, discountPercentage } =
     book;
+  const [isCart, setCart] = useState(false);
+  const { cart } = useAppSelector((store) => store.cartSlice);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const itemIndex = cart.findIndex((item: { id: string }) => item.id === _id);
+
+    itemIndex !== -1 ? setCart(true) : setCart(false);
+  }, [cart, _id]);
 
   return (
     <div
@@ -48,7 +60,13 @@ const BookCard: React.FC<BookCardProps> = ({ book }) => {
         <div className={`flex flex-wrap gap-3`}>
           <button
             type="button"
-            className={`btn btn-sm bg-yellow-indian text-white !border-yellow-indian hover:bg-transparent hover:text-yellow-indian rounded normal-case`}
+            className={`btn btn-sm bg-yellow-indian text-white !border-yellow-indian hover:bg-transparent hover:text-yellow-indian rounded normal-case ${
+              isCart ? "btn-disabled" : ""
+            }`}
+            onClick={() => {
+              dispatch(addCart({ method: "short", id: _id }));
+              toast.success("Item added!");
+            }}
           >
             Buy Now
           </button>
