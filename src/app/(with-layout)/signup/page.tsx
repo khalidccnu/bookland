@@ -62,6 +62,8 @@ const SignUp = () => {
 
       reader.onload = () => setUserImgPrev(reader.result);
       reader.readAsDataURL(formik.values.userImg);
+    } else {
+      setUserImgPrev(null);
     }
   }, [formik.values.userImg]);
 
