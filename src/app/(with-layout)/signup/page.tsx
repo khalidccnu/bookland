@@ -1,10 +1,12 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { BsFillArrowLeftSquareFill } from "react-icons/bs";
 import { FaUpload } from "react-icons/fa";
+import imgAvatar from "@/assets/avatar.png";
 
 interface FormikValuesTypes {
   name: string;
@@ -39,6 +41,10 @@ const validationSchema = yup.object({
 });
 
 const SignUp = () => {
+  const [userImgPrev, setUserImgPrev] = useState<null | string | ArrayBuffer>(
+    null,
+  );
+
   const formik = useFormik<FormikValuesTypes>({
     initialValues: {
       name: "",
@@ -49,6 +55,15 @@ const SignUp = () => {
     validationSchema,
     onSubmit: (values) => {},
   });
+
+  useEffect(() => {
+    if (formik.values.userImg) {
+      const reader = new FileReader();
+
+      reader.onload = () => setUserImgPrev(reader.result);
+      reader.readAsDataURL(formik.values.userImg);
+    }
+  }, [formik.values.userImg]);
 
   return (
     <section className="py-16">
@@ -67,9 +82,18 @@ const SignUp = () => {
                 <BsFillArrowLeftSquareFill />
               </Link>
             </div>
+            <div className={`mt-5 mb-4`}>
+              <figure className={`w-24 h-24 mx-auto rounded overflow-hidden`}>
+                {typeof userImgPrev === "string" ? (
+                  <img src={userImgPrev} alt="" className={`w-full h-full`} />
+                ) : (
+                  <img src={imgAvatar.src} alt="" className={`w-full h-full`} />
+                )}
+              </figure>
+            </div>
             <form
               onSubmit={formik.handleSubmit}
-              className="form-control grid grid-cols-1 gap-y-4 mt-5"
+              className="form-control grid grid-cols-1 gap-y-4"
             >
               <div className="flex flex-col gap-0.5">
                 <input
@@ -120,24 +144,7 @@ const SignUp = () => {
                 ) : null}
               </div>
               <div>
-                <input
-                  type="file"
-                  name="userImg"
-                  id="userImg"
-                  className="hidden"
-                  accept="image/*"
-                  onChange={(e) =>
-                    formik.setFieldValue(
-                      "userImg",
-                      e.currentTarget.files?.[0] || null,
-                    )
-                  }
-                  onBlur={formik.handleBlur}
-                />
-                <label
-                  htmlFor="userImg"
-                  className="btn btn-sm w-full bg-transparent hover:bg-blue-cetacean text-blue-cetacean hover:text-white !border-blue-cetacean rounded normal-case"
-                >
+                <label className="relative btn btn-sm w-full bg-transparent hover:bg-blue-cetacean text-blue-cetacean hover:text-white !border-blue-cetacean rounded normal-case">
                   {formik.values.userImg ? (
                     formik.values.userImg.name.substring(
                       0,
@@ -149,6 +156,19 @@ const SignUp = () => {
                       <FaUpload />
                     </>
                   )}
+                  <input
+                    type="file"
+                    name="userImg"
+                    className="absolute left-0 top-0 w-0 h-0 overflow-hidden"
+                    accept="image/*"
+                    onChange={(e) =>
+                      formik.setFieldValue(
+                        "userImg",
+                        e.currentTarget.files?.[0] || null,
+                      )
+                    }
+                    onBlur={formik.handleBlur}
+                  />
                 </label>
                 {formik.touched.userImg && Boolean(formik.errors.userImg) ? (
                   <small className="text-red-600 ml-0.5">
