@@ -41,7 +41,7 @@ const Menu: React.FC<MenuProps> = ({ isMenu, setMenu }) => {
               <li key={idx} onClick={() => setMenu(!isMenu)}>
                 <Link
                   href={path}
-                  className={`hover:text-yellow-indian transition-colors duration-500 ${
+                  className={`whitespace-nowrap hover:text-yellow-indian transition-colors duration-500 ${
                     isActive ? "text-yellow-indian" : ""
                   }`}
                 >
