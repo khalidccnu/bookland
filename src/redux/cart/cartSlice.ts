@@ -1,8 +1,22 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { getCart } from "@/redux/cart/cartThunks";
 
 interface cartItem {
   id: string;
   quantity: number;
+}
+
+interface Book {
+  _id: string;
+  title: string;
+  isbn13: string;
+  quantity: number;
+  price: number;
+  discountPrice: number;
+  image: {
+    path: string;
+  };
+  discount: boolean;
 }
 
 interface cartCalculation {
@@ -13,12 +27,14 @@ interface cartCalculation {
 
 interface cartState {
   cart: cartItem[];
+  cartBooks: Book[];
   cartCalculation: cartCalculation;
   cartLoading: boolean;
 }
 
 const initialState: cartState = {
   cart: [],
+  cartBooks: [],
   cartCalculation: {
     total: 0,
     tax: 0,
@@ -31,19 +47,6 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    getCartCalculation: (state, action) => {
-      const total = action.payload.reduce(
-        (total: number, current: any) =>
-          total +
-          current.quantity *
-            (current.discount ? current.discountPrice : current.price),
-        0,
-      );
-
-      const tax = total * 0.03;
-      const grandTotal = total + tax;
-      state.cartCalculation = { total, tax, grandTotal };
-    },
     setCart: (state) => {
       const cart = localStorage.getItem("cart");
 
@@ -91,8 +94,16 @@ const cartSlice = createSlice({
       localStorage.setItem("cart", JSON.stringify(state.cart));
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getCart.pending, () => {})
+      .addCase(getCart.fulfilled, (state, action: any) => {
+        state.cartBooks = action.payload.cartBooks;
+        state.cartCalculation = action.payload.calculation;
+      })
+      .addCase(getCart.rejected, () => {});
+  },
 });
 
-export const { getCartCalculation, setCart, addCart, removeCart, clearCart } =
-  cartSlice.actions;
+export const { setCart, addCart, removeCart, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;

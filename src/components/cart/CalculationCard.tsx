@@ -1,27 +1,9 @@
-import React, { useEffect } from "react";
 import Link from "next/link";
 import Swal from "sweetalert2";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { clearCart, getCartCalculation } from "@/redux/cart/cartSlice";
+import { clearCart } from "@/redux/cart/cartSlice";
 
-interface Book {
-  _id: string;
-  title: string;
-  isbn13: string;
-  quantity: number;
-  price: number;
-  discountPrice: number;
-  image: {
-    path: string;
-  };
-  discount: boolean;
-}
-
-interface CalculationCardProps {
-  books: Book[];
-}
-
-const CalculationCard: React.FC<CalculationCardProps> = ({ books }) => {
+const CalculationCard = () => {
   const { cartCalculation } = useAppSelector((store) => store.cartSlice);
   const dispatch = useAppDispatch();
 
@@ -48,10 +30,6 @@ const CalculationCard: React.FC<CalculationCardProps> = ({ books }) => {
       }
     });
   };
-
-  useEffect(() => {
-    dispatch(getCartCalculation(books));
-  }, [books]);
 
   return (
     <div className="card card-compact bg-white p-5 rounded">

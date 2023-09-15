@@ -1,7 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
+import axios from "axios";
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { StripeCardElement } from "@stripe/stripe-js";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import {
@@ -11,6 +15,9 @@ import {
   getAllUnion,
   // @ts-ignore
 } from "bd-divisions-to-unions";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { clearCart } from "@/redux/cart/cartSlice";
+import { getCart } from "@/redux/cart/cartThunks";
 
 const validationSchema = yup.object({
   email: yup
@@ -32,9 +39,17 @@ const validationSchema = yup.object({
 });
 
 const Form = () => {
+  const router = useRouter();
+  const stripe = useStripe();
+  const elements = useElements();
+  const { cart, cartCalculation } = useAppSelector((store) => store.cartSlice);
+  const dispatch = useAppDispatch();
   const [districts, setDistricts] = useState([]);
   const [upazillas, setUpazillas] = useState([]);
   const [unions, setUnions] = useState([]);
+  const [stripeError, setStripeError] = useState<undefined | null | string>(
+    null,
+  );
 
   const formik = useFormik({
     initialValues: {
@@ -48,8 +63,56 @@ const Form = () => {
       postal: "",
     },
     validationSchema,
-    onSubmit: (values) => {},
+    onSubmit: (values) => {
+      setStripeError(null);
+
+      axios
+        .post(`/apis/stripe/create-payment-intent`, {
+          paidBalance: cartCalculation.grandTotal,
+        })
+        .then(async (clientSecret) => {
+          const card = elements?.getElement(CardElement) as StripeCardElement;
+
+          const { error: cpmError, paymentMethod } =
+            (await stripe?.createPaymentMethod({
+              type: "card",
+              card,
+            })) ?? {};
+
+          if (cpmError) {
+            setStripeError(cpmError.message);
+            return false;
+          }
+
+          const { error: ccpError, paymentIntent } =
+            (await stripe?.confirmCardPayment(clientSecret.data.secret, {
+              payment_method: {
+                card: card,
+                billing_details: {
+                  name: values.name,
+                  email: values.email,
+                },
+              },
+            })) ?? {};
+
+          if (ccpError) {
+            setStripeError(ccpError.message);
+            return false;
+          }
+
+          if (paymentIntent?.status === "succeeded") {
+            router.push("/order-complete");
+            dispatch(clearCart());
+          }
+        });
+    },
   });
+
+  useEffect(() => {
+    if (cart) {
+      dispatch(getCart({ cart }));
+    }
+  }, [cart]);
 
   return (
     <form
@@ -244,9 +307,19 @@ const Form = () => {
           ) : null}
         </div>
       </div>
+      <div className="space-y-3">
+        <h3 className="font-semibold">Payment</h3>
+        <div className={`flex flex-col gap-0.5`}>
+          <CardElement />
+          {stripeError ? (
+            <small className="text-red-600 ml-0.5">{stripeError}</small>
+          ) : null}
+        </div>
+      </div>
       <button
         type="submit"
         className="btn btn-sm bg-blue-cetacean hover:bg-transparent text-white hover:text-blue-cetacean !border-blue-cetacean rounded normal-case"
+        disabled={!stripe || !elements}
       >
         Complete Order
       </button>

@@ -1,11 +1,5 @@
-import React, { useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import Item from "@/components/cart/Item";
-
-interface cartItem {
-  id: string;
-  quantity: number;
-}
 
 interface Book {
   _id: string;
@@ -21,30 +15,10 @@ interface Book {
 }
 
 interface ItemsProps {
-  cart: cartItem[];
   books: Book[];
-  setBooks: React.Dispatch<React.SetStateAction<Book[]>>;
 }
 
-const Items: React.FC<ItemsProps> = ({ cart, books, setBooks }) => {
-  useEffect(() => {
-    if (cart) {
-      axios.post(`/apis/books/cart`, cart).then((response) => {
-        const cartBooks = [];
-
-        for (let book in cart) {
-          const cartItems = response.data.find(
-            (data: Book) => data._id === cart[book].id,
-          );
-
-          cartBooks.push({ ...cartItems, quantity: cart[book].quantity });
-        }
-
-        setBooks(cartBooks);
-      });
-    }
-  }, [cart]);
-
+const Items: React.FC<ItemsProps> = ({ books }) => {
   return (
     <div className="overflow-x-auto">
       <table className="table">

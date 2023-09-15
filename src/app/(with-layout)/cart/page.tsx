@@ -1,27 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect } from "react";
 import { Rings } from "react-loader-spinner";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { getCart } from "@/redux/cart/cartThunks";
 import Items from "@/components/cart/Items";
 import CalculationCard from "@/components/cart/CalculationCard";
 
-interface Book {
-  _id: string;
-  title: string;
-  isbn13: string;
-  quantity: number;
-  price: number;
-  discountPrice: number;
-  image: {
-    path: string;
-  };
-  discount: boolean;
-}
-
 const Cart = () => {
-  const { cart, cartLoading } = useAppSelector((store) => store.cartSlice);
-  const [books, setBooks] = useState<Book[]>([]);
+  const { cart, cartBooks, cartLoading } = useAppSelector(
+    (store) => store.cartSlice,
+  );
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (cart) {
+      dispatch(getCart({ cart }));
+    }
+  }, [cart]);
 
   return (
     <section className={`py-16`}>
@@ -30,10 +26,10 @@ const Cart = () => {
           cart.length ? (
             <div className={`grid grid-cols-1 md:grid-cols-3 gap-8`}>
               <div className={`md:col-span-2`}>
-                <Items cart={cart} books={books} setBooks={setBooks} />
+                <Items books={cartBooks} />
               </div>
               <div>
-                <CalculationCard books={books} />
+                <CalculationCard />
               </div>
             </div>
           ) : (
