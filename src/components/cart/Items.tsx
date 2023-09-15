@@ -26,8 +26,8 @@ const Items: React.FC<ItemsProps> = ({ books }) => {
           <tr>
             <th>Item</th>
             <th>Price</th>
-            <th>Quantity</th>
-            <th>Total</th>
+            <th className={`w-36`}>Quantity</th>
+            <th className={`w-36`}>Total</th>
             <th></th>
           </tr>
         </thead>

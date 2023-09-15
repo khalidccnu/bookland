@@ -8,7 +8,7 @@ import Items from "@/components/cart/Items";
 import CalculationCard from "@/components/cart/CalculationCard";
 
 const Cart = () => {
-  const { cart, cartBooks, cartLoading } = useAppSelector(
+  const { cart, cartBooks, cartBooksLoading } = useAppSelector(
     (store) => store.cartSlice,
   );
   const dispatch = useAppDispatch();
@@ -22,8 +22,8 @@ const Cart = () => {
   return (
     <section className={`py-16`}>
       <div className="container">
-        {!cartLoading ? (
-          cart.length ? (
+        {!cartBooksLoading ? (
+          cartBooks.length ? (
             <div className={`grid grid-cols-1 md:grid-cols-3 gap-8`}>
               <div className={`md:col-span-2`}>
                 <Items books={cartBooks} />

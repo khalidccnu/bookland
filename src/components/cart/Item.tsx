@@ -93,7 +93,7 @@ const Item: React.FC<ItemProps> = ({ book }) => {
           <span>{(discount ? discountPrice : price).toFixed(2)}</span>
         </span>
       </td>
-      <td>
+      <td className={`w-36`}>
         <div className="btn-group">
           <button
             className="btn btn-xs btn-outline"
@@ -112,7 +112,7 @@ const Item: React.FC<ItemProps> = ({ book }) => {
           </button>
         </div>
       </td>
-      <td>
+      <td className={`w-36`}>
         <span className="badge badge-ghost badge-sm font-bold space-x-0.5">
           <span>$</span>
           <span>

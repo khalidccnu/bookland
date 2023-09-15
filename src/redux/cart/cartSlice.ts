@@ -29,7 +29,7 @@ interface cartState {
   cart: cartItem[];
   cartBooks: Book[];
   cartCalculation: cartCalculation;
-  cartLoading: boolean;
+  cartBooksLoading: boolean;
 }
 
 const initialState: cartState = {
@@ -40,7 +40,7 @@ const initialState: cartState = {
     tax: 0,
     grandTotal: 0,
   },
-  cartLoading: true,
+  cartBooksLoading: true,
 };
 
 const cartSlice = createSlice({
@@ -51,7 +51,6 @@ const cartSlice = createSlice({
       const cart = localStorage.getItem("cart");
 
       if (cart) state.cart = JSON.parse(cart);
-      state.cartLoading = false;
     },
     addCart: (state, action: PayloadAction<{ id: string; method: string }>) => {
       if (action.payload.method === "short") {
@@ -100,6 +99,7 @@ const cartSlice = createSlice({
       .addCase(getCart.fulfilled, (state, action: any) => {
         state.cartBooks = action.payload.cartBooks;
         state.cartCalculation = action.payload.calculation;
+        state.cartBooksLoading = false;
       })
       .addCase(getCart.rejected, () => {});
   },
