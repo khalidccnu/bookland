@@ -44,6 +44,7 @@ const Form = () => {
   const elements = useElements();
   const { cart, cartCalculation } = useAppSelector((store) => store.cartSlice);
   const dispatch = useAppDispatch();
+  const [isOrderProcess, setOrderProcess] = useState(false);
   const [districts, setDistricts] = useState([]);
   const [upazillas, setUpazillas] = useState([]);
   const [unions, setUnions] = useState([]);
@@ -65,6 +66,7 @@ const Form = () => {
     validationSchema,
     onSubmit: (values) => {
       setStripeError(null);
+      setOrderProcess(true);
 
       axios
         .post(`/apis/stripe/create-payment-intent`, {
@@ -81,6 +83,7 @@ const Form = () => {
 
           if (cpmError) {
             setStripeError(cpmError.message);
+            setOrderProcess(false);
             return false;
           }
 
@@ -97,11 +100,12 @@ const Form = () => {
 
           if (ccpError) {
             setStripeError(ccpError.message);
+            setOrderProcess(false);
             return false;
           }
 
           if (paymentIntent?.status === "succeeded") {
-            router.push("/order-complete");
+            router.push("/complete-order");
             dispatch(clearCart());
           }
         });
@@ -321,7 +325,13 @@ const Form = () => {
         className="btn btn-sm bg-blue-cetacean hover:bg-transparent text-white hover:text-blue-cetacean !border-blue-cetacean rounded normal-case"
         disabled={!stripe || !elements}
       >
-        Complete Order
+        <span>Complete Order</span>
+        {isOrderProcess ? (
+          <span
+            className="inline-block h-4 w-4 border-2 border-current border-r-transparent rounded-full animate-spin"
+            role="status"
+          ></span>
+        ) : null}
       </button>
     </form>
   );
