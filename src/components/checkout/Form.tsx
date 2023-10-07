@@ -45,6 +45,10 @@ const Form = () => {
   const { cart, cartCalculation } = useAppSelector((store) => store.cartSlice);
   const dispatch = useAppDispatch();
   const [isOrderProcess, setOrderProcess] = useState(false);
+  const [areaIds, setAreaIds] = useState({
+    division: null,
+    district: null,
+  });
   const [districts, setDistricts] = useState([]);
   const [upazillas, setUpazillas] = useState([]);
   const [unions, setUnions] = useState([]);
@@ -112,11 +116,52 @@ const Form = () => {
     },
   });
 
+  const handleAreaIds = (target: { name: string; value: number }) => {
+    const { name, value } = target;
+
+    setAreaIds((prev) => ({ ...prev, [name]: value }));
+  };
+
   useEffect(() => {
     if (cart) {
       dispatch(getCart({ cart }));
     }
   }, [cart]);
+
+  useEffect(() => {
+    if (formik.values.division) {
+      const division = getAllDivision("en").find(
+        (division: { title: string }) =>
+          division.title === formik.values.division,
+      );
+
+      setDistricts(getAllDistrict("en")[division.value]);
+      handleAreaIds({ name: "division", value: division.value });
+    }
+  }, [formik.values.division]);
+
+  useEffect(() => {
+    if (formik.values.district) {
+      const district = getAllDistrict("en")[areaIds.division].find(
+        (district: { title: string }) =>
+          district.title === formik.values.district,
+      );
+
+      setUpazillas(getAllUpazila("en")[district.value]);
+      handleAreaIds({ name: "district", value: district.value });
+    }
+  }, [formik.values.district]);
+
+  useEffect(() => {
+    if (formik.values.upazilla) {
+      const upazilla = getAllUpazila("en")[areaIds.district].find(
+        (upazilla: { title: string }) =>
+          upazilla.title === formik.values.upazilla,
+      );
+
+      setUnions(getAllUnion("en")[upazilla.value]);
+    }
+  }, [formik.values.upazilla]);
 
   return (
     <form
@@ -181,13 +226,7 @@ const Form = () => {
             </option>
             {getAllDivision("en").map(
               (division: { title: string; value: number }) => (
-                <option
-                  key={division.value}
-                  value={division.title}
-                  onClick={() =>
-                    setDistricts(getAllDistrict("en")[division.value])
-                  }
-                >
+                <option key={division.value} value={division.title}>
                   {division.title}
                 </option>
               ),
@@ -211,13 +250,7 @@ const Form = () => {
               District
             </option>
             {districts.map((district: { title: string; value: number }) => (
-              <option
-                key={district.value}
-                value={district.title}
-                onClick={() =>
-                  setUpazillas(getAllUpazila("en")[district.value])
-                }
-              >
+              <option key={district.value} value={district.title}>
                 {district.title}
               </option>
             ))}
@@ -240,11 +273,7 @@ const Form = () => {
               Upazilla
             </option>
             {upazillas.map((upazilla: { title: string; value: number }) => (
-              <option
-                key={upazilla.value}
-                value={upazilla.title}
-                onClick={() => setUnions(getAllUnion("en")[upazilla.value])}
-              >
+              <option key={upazilla.value} value={upazilla.title}>
                 {upazilla.title}
               </option>
             ))}
